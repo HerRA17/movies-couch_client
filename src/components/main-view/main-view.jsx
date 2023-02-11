@@ -9,15 +9,6 @@ export const MainView = () => {
     const [user,setUser] = useState(storedUser? storedUser : null);
     const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
-    // set default state to null(default-state)
-    const [selectedMovie, setSelectedMovie] = useState(null);
-    export const SignupView = () => {
-        const [username, setUsername] = useState("");
-        const [password, setPassword] = useState("");
-        const [email, setEmail] = useState("");
-        const [birthday, setBirthday] = useState("");
-        const handleSubmit = (event) => {};
-    }
 
 useEffect(() => {
     
