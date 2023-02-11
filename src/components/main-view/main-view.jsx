@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view"; 
-// import {LoginView} from "../"
+
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -20,18 +20,13 @@ export const MainView = () => {
     }
 
 useEffect(() => {
-    // if(!token) {
-    //     return;
-    // }
+    
 
-    fetch("https://movies-couch-api-herra17.vercel.app/") //, {
-        // headers: {Authorization: `Bearer ${token}`}
-        // })
+    fetch("https://movies-couch-api-herra17.vercel.app/") 
     .then((response) => response.json())
-    // .then((movies) => { setMovies(movies); })
-        })
+            })
     .then((data) => {
-        // console.log(data); 
+        console.log(data); 
         const moviesFromApi = data.docs.maps((doc) => {
             return {
                 id: doc.key,
@@ -42,19 +37,9 @@ useEffect(() => {
         });
         setMovies(moviesFromApi); 
     });
-}, [/*token */ ];
+}, [ ];
  
-    // if (!user) {
-    //     return <LoginView onLoggedIn={(user, token) => {
-    //  setUser(user);
-    //  setToken(token); 
-    // }} />
-    // or
-    // <Signup />
-    // </>
-    // }
-    
-    if (selectedMovie) {
+if (selectedMovie) {
         return (
         <MovieView movie={selectedMovie} onMovieClick={() => setSelectedMovie(null)} />
         );
@@ -71,37 +56,6 @@ useEffect(() => {
                 }} />;
             })}
             </div>
-    /*  <form onSubmit={handleSubmit}>
-            <label> 
-            Username:
-            <input
-            type="text" value={username} onChange={(e) => setUsername(e.target.value)}
-            required minLength="3"
-            />
-            </label>
-            <label>
-            Password:
-            <input 
-            type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                required 
-                />
-            </label>
-            <label> 
-            Email:
-            <input 
-            type="email" value={email} onChange{(e) setEmail(e.target.value)}
-            required />
-            </label>
-            <label>
-            Birthday: 
-            <input 
-            type="date" value={birthday} onChange{(e) => setBirthday(e.target.value) 
-                required /> 
-            </label>
-            <button type="submit">Submit</button>
-        </form>
-            */
-           );
-        // <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-    // };
+        );
+    };
         
