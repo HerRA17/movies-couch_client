@@ -8,7 +8,7 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
 useEffect(() => {
-    fetch("https://movies-couch-api-herra17.vercel.app/movies") 
+    fetch("https://movies-couch-api.vercel.app/movies") 
     .then((response) => response.json())
     .then((data) => {
         console.log(data); 
@@ -17,7 +17,8 @@ useEffect(() => {
                 id: doc.key,
                 title: doc.title,
                 image: `${doc.cover}`,
-                director: doc.director_name
+                director: doc.director_name,
+                genre: doc.genre_name
             };
         });
         setMovies(moviesFromApi); 
@@ -25,6 +26,8 @@ useEffect(() => {
 }), [ ];
  
 if (selectedMovie) {
+    // let similarMovies = movies.filter(checkMovies); allowing to look up similar movies based on title, director, genre 
+    // function checkMovies(title, director) {} 
         return (
         <MovieView movie={selectedMovie} onMovieClick={() => setSelectedMovie(null)} />
         );
