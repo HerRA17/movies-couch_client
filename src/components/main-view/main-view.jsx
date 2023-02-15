@@ -1,21 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view"; 
 
 
 export const MainView = () => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
-    const [user,setUser] = useState(storedUser? storedUser : null);
-    const [token, setToken] = useState(storedToken? storedToken : null);
+    const [selectedMovie, setSelectedMovie] = useState(null);
     const [movies, setMovies] = useState([]);
 
 useEffect(() => {
-    
-
-    fetch("https://movies-couch-api-herra17.vercel.app/") 
+    fetch("https://movies-couch-api-herra17.vercel.app/movies") 
     .then((response) => response.json())
-            })
     .then((data) => {
         console.log(data); 
         const moviesFromApi = data.docs.maps((doc) => {
@@ -28,7 +22,7 @@ useEffect(() => {
         });
         setMovies(moviesFromApi); 
     });
-}, [ ];
+}), [ ];
  
 if (selectedMovie) {
         return (
@@ -48,5 +42,5 @@ if (selectedMovie) {
             })}
             </div>
         );
-    };
+        };
         
