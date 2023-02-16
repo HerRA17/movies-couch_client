@@ -8,6 +8,7 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
 useEffect(() => {
+    try {
     fetch("https://movies-couch-api.vercel.app/movies")
     .then((response) => response.json())
     .then((data) => {
@@ -23,6 +24,9 @@ useEffect(() => {
         });
         setMovies(moviesFromApi); 
     });
+}    catch(error) {
+    console.log(error);
+}
 }), [ ];
  
 if (selectedMovie) {
