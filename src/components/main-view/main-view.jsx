@@ -8,8 +8,7 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
 useEffect(() => {
-    fetch("https://movies-couch-api.vercel.app/movies") 
-    .then((response) => response.json())
+    fetch("https://movies-couch-api.vercel.app/movies").then((response) => response.json())
     .then((data) => {
         console.log(data); 
         const moviesFromApi = data.docs.maps((doc) => {
