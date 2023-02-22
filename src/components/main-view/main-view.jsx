@@ -12,19 +12,21 @@ import {LoginView} from "../login-view/login-view";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
+    // const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser? storedUser : null);
-    const [token, setToken] = useState(storedToken? storedToken : null);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+    // const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
 useEffect(() => {
     //verifying token-authentication to access request
-    if(!token) {
-        return;
-    }
+    // if(!token) {
+    //     return;
+    // }
+    // set loading before sending API request
+    setLoading(true);
     fetch("https://movies-couch-api.vercel.app/movies", {
-    headers: {Authorization: `Bearer ${token}`} 
+    // headers: {Authorization: `Bearer ${token}`} 
     	})
     .then((response) => response.json())
     .then((movies) => {
@@ -33,20 +35,20 @@ useEffect(() => {
             return {
                 id: movie.key,
                 Title: movie.Title,
-                Image: movie.ImageURL,
+                Image: src=("./images"),
                 Director: movie.Director_name,
                 Genre: movie.Genre_name?.[0]
             };    
         });
         setMovies(moviesFromApi); 
     });
-}, [token]);
+}, [/*token*/]);
 if (!user) {
     return (
     <> 
-        <LoginView onLoggedIn={(user, token) => {
+        <LoginView onLoggedIn={(user/*, token*/) => {
             setUser(user);
-            setToken(token);
+            /*setToken(token);*/
         }} />
       {/*  or
         <SignupView /> 
@@ -54,6 +56,7 @@ if (!user) {
      </>
     );
 }
+// display movie-view when movie is selected 
 if (selectedMovie) {
     // allowing to look up similar movies based on title, director, genre
             
@@ -75,11 +78,19 @@ if (selectedMovie) {
         </>
         );
     }
+    // display test message if list of movies is empty
     if (movies.length === 0) {
         return <div>The list is empty!</div>;
     }
-
+// display movie-card with logout button, if user does not select a movie
     return (
+        // conditional rendering for loading statement
+        loading ? (
+            <p>Loading..</p>
+        ) : !movies || !movieslength ? (
+            <p>No movies found</p>
+        ) : (
+        <>
         <div>
             {movies.map((movie) => {
             return  <MovieCard key={movie.id}  movie={movie} onMovieClick={(newSelectedMovie) => {
@@ -87,7 +98,8 @@ if (selectedMovie) {
                 }} />;
             })}
             </div>
-        );
-        <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+            <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+            </>
+        ));
     };
         
