@@ -13,8 +13,25 @@ export const MovieCard = ({ movie, onMovieClick}) => {
     );
 };
 //Similar-Movie Component:
-
-// defined props constrains for Movie Card
+// similarMovies.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Image: PropTypes.string.isRequired,
+//     Director: PropTypes.shape ({
+//       Name: PropTypes.string,
+//       Bio: PropTypes.string,
+//       Birthyear: PropTypes.date,
+//       Deathyear: PropTypes.date
+//       }),
+//     Genre: PropTypes.shape ({
+//       Name: PropTypes.string,
+//       Description: PropTypes.string
+//     })
+//   }).isRequired,
+//   onMovieClick: PropTypes.func.isRequired
+// }
+// }
+// validation of data types between prop & component
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
