@@ -53,4 +53,4 @@ export const LoginView = ({ onLoggedIn }) => {
             </label>
         </form>
     );
-}
+};
