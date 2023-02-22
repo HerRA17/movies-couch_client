@@ -7,7 +7,7 @@ import { MovieView } from "../movie-view/movie-view";
 // importing Login View
 import {LoginView} from "../login-view/login-view";
 // importing Signup VIew
-import {SignupView} from "../signup-view/signup-view";
+// import {SignupView} from "../signup-view/signup-view";
 
 
 export const MainView = () => {
@@ -48,8 +48,9 @@ if (!user) {
             setUser(user);
             setToken(token);
         }} />
-        or
-        <SignupView />
+      {/*  or
+        <SignupView /> 
+    */}
      </>
     );
 }
