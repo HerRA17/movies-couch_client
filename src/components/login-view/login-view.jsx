@@ -1,8 +1,10 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 
-const [username, setUsername] = useState("");
+
 export const LoginView = ({ onLoggedIn }) => {
+ const [username, setUsername] = useState("");
+ const [password, setPassword] = useState("");
  const handleSubmit = (event) =>{ 
     //prevents default behavior of the form which is to reload the entire page
     event.preventDefault();
@@ -39,7 +41,8 @@ export const LoginView = ({ onLoggedIn }) => {
                 <input type= "text" 
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                minLength="5"/>
+                minLength="5"
+                required />
             </label>
             <label> 
                 Password:
