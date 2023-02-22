@@ -6,8 +6,15 @@ export const SignupView = () => {
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
     
-    const handleSubmit = (event) => {};
-    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    const data = {
+        username: username,
+        secret: password,
+        email: email,
+        birthday: birthday
+        };
+
     fetch("Signup_URL/signup", {
         method: "POST",
         headers: {
@@ -56,3 +63,4 @@ export const SignupView = () => {
             <button type="submit">Submit</button>
         </form>
     );
+};
