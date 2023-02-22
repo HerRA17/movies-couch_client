@@ -27282,7 +27282,25 @@ const MovieCard = ({ movie , onMovieClick  })=>{
 };
 _c = MovieCard;
 //Similar-Movie Component:
-// defined props constrains for Movie Card
+// similarMovies.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Image: PropTypes.string.isRequired,
+//     Director: PropTypes.shape ({
+//       Name: PropTypes.string,
+//       Bio: PropTypes.string,
+//       Birthyear: PropTypes.date,
+//       Deathyear: PropTypes.date
+//       }),
+//     Genre: PropTypes.shape ({
+//       Name: PropTypes.string,
+//       Description: PropTypes.string
+//     })
+//   }).isRequired,
+//   onMovieClick: PropTypes.func.isRequired
+// }
+// }
+// validation of data types between prop & component
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         Title: (0, _propTypesDefault.default).string.isRequired,
@@ -28338,6 +28356,7 @@ const LoginView = ({ onLoggedIn  })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
+    //  validation of user login
     const handleSubmit = (event)=>{
         //prevents default behavior of the form which is to reload the entire page
         event.preventDefault();
@@ -28355,14 +28374,16 @@ const LoginView = ({ onLoggedIn  })=>{
             console.log("Login response: ", data);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("token", data.token);
-                onLoggedIn(data.user, data.token);
+                // localStorage.setItem("token", data.token);
+                onLoggedIn(data.user /*, data.token*/ );
             } else alert("No such user");
         }).catch((e)=>{
             alert("Something went wrong!");
         });
     };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+    //  login form with submit button
+    return(// handle submit is the callback of onSubmit, tells the login API to validate user & password
+    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28376,13 +28397,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 41,
+                        lineNumber: 44,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 39,
+                lineNumber: 42,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28395,21 +28416,21 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 49,
+                        lineNumber: 52,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 47,
+                lineNumber: 50,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 38,
+        lineNumber: 41,
         columnNumber: 9
-    }, undefined);
+    }, undefined));
 };
 _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
@@ -28422,149 +28443,73 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"4OGiN":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$73d1.prelude(module);
+// import { useState } from "react";
+// export const SignupView = () => {
+//     const [username, setUsername] = useState(""); 
+//     const [password, setPassword] = useState("");
+//     const [email, setEmail] = useState("");
+//     const [birthday, setBirthday] = useState("");
+// validation of signup view
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//     const data = {
+//         username: username,
+//         secret: password,
+//         email: email,
+//         birthday: birthday
+//         };
+//     fetch("Signup_URL/signup", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)        
+//         }).then((response) => {
+//          if (response.ok) {
+//             alert("Signup successful");
+//              window.location.reload();
+//              } else {
+//                  alert("Signup failed")
+//                 } 
+//             });
+//          };
+// signup form with submit button
+//         return (
+// handleSubmit is the callback of onSubmit, tells the login API to validate user & password
+//         <form onSubmit={handleSubmit}>
+//             <label>
+//                 Username:
+//                 <input type= "text" 
+//                 value={username}
+//                 onChange={(e) => setUsername(e.target.value)}
+//                 minLength="5"/>
+//             </label>
+//             <label> 
+//                 Password:
+//                 <input type="password"
+//                  value={password}
+//                  onChange={(e) => setPassword(e.target.value)}
+//                  required />
+//             </label>
+//             <label>
+//                 Email:
+//                 <input type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 required />
+//             </label>
+//             <label>
+//                 Birthday:
+//                 <input type="date"
+//                 value={birthday}
+//                 onChange={(e) => setBirthday(e.target.value)}
+//                 required />
+//             </label>
+//             <button type="submit">Submit</button>
+//         </form>
+//     );
+// };
 
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SignupView", ()=>SignupView);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _s = $RefreshSig$();
-const SignupView = ()=>{
-    _s();
-    const [username, setUsername] = (0, _react.useState)("");
-    const [password, setPassword] = (0, _react.useState)("");
-    const [email, setEmail] = (0, _react.useState)("");
-    const [birthday, setBirthday] = (0, _react.useState)("");
-    const handleSubmit = (event)=>{
-        event.preventDefault();
-        const data = {
-            username: username,
-            secret: password,
-            email: email,
-            birthday: birthday
-        };
-        fetch("Signup_URL/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then((response)=>{
-            if (response.ok) {
-                alert("Signup successful");
-                window.location.reload();
-            } else alert("Signup failed");
-        });
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-        onSubmit: handleSubmit,
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Username:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value),
-                        minLength: "5"
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 37,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 35,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Password:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "password",
-                        value: password,
-                        onChange: (e)=>setPassword(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 44,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 42,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Email:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "email",
-                        value: email,
-                        onChange: (e)=>setEmail(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 51,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 49,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Birthday:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "date",
-                        value: birthday,
-                        onChange: (e)=>setBirthday(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 58,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 56,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                type: "submit",
-                children: "Submit"
-            }, void 0, false, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 63,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/signup-view/signup-view.jsx",
-        lineNumber: 34,
-        columnNumber: 9
-    }, undefined);
-};
-_s(SignupView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
-_c = SignupView;
-var _c;
-$RefreshReg$(_c, "SignupView");
-
-  $parcel$ReactRefreshHelpers$73d1.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"lJZlQ":[function() {},{}]},["gf9ir","iP3KC","d8Dch"], "d8Dch", "parcelRequirea9e5")
+},{}],"lJZlQ":[function() {},{}]},["gf9ir","iP3KC","d8Dch"], "d8Dch", "parcelRequirea9e5")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
