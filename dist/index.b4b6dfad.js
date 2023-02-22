@@ -27158,12 +27158,21 @@ var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 //importing Movieview componentS
 var _movieView = require("../movie-view/movie-view");
+//import Login View
+var _loginViewJsx = require("../login-view/login-view.jsx");
+//import Sign up view
+var _signupViewJsx = require("../signup-view/signup-view.jsx");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     const [movies, setMovies] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
+        if (!token) return;
         fetch("https://movies-couch-api.vercel.app/movies").then((response)=>response.json()).then((movies)=>{
             console.log(movies);
             const moviesFromApi = movies.map((movie)=>{
@@ -27177,40 +27186,43 @@ const MainView = ()=>{
             });
             setMovies(moviesFromApi);
         });
-    }, []);
+    }, [
+        token
+    ]);
     if (selectedMovie) // allowing to look up similar movies based on title, director, genre
-    // let filteredMovies = [];
-    //     const filterByGenre = (genre, id) => {
-    //     let similarMovies = movies.filter((m) =>
-    //      m.genreName === genre && m._id !== id); 
-    //     return filteredMovies
-    //     }; 
-    // const filterByGenre = (director, id) => {
-    // let similarMovies = movies.filter((m) =>
-    //  m.directorName === director && m._id !== id); 
-    // return filteredMovies
-    // };  
-    // const filterByGenre = (title, id) => {
-    // let similarMovies = movies.filter((m) =>
-    //  m.titleName === title && m._id !== id); 
-    // return filteredMovies
-    // }; or
-    // let filteredMovies =  movies.filter((m) =>
-    //      m.GenreName === Genre && m._id !== id); 
-    //     return filteredMovies 
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onMovieClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 55,
-        columnNumber: 9
-    }, undefined);
+    // let similarMovies =  movies.filter((m) =>
+    //  m.GenreName === Genre && m._id !== id); 
+    /* <h2>Similar Movies</h2> //shouold go below <hr />
+            {similarMovies.map((movie) => {
+            return {
+                id: movie.key,
+                Title: movie.Title,
+                Image: movie.ImageURL,
+                Director: movie.Director_name,
+                Genre: movie.Genre_name?.[0]
+            }
+            })} */ return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                movie: selectedMovie,
+                onMovieClick: ()=>setSelectedMovie(null)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 57,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 58,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 59,
+        lineNumber: 64,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27222,17 +27234,17 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 65,
+                lineNumber: 70,
                 columnNumber: 21
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 68,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "gZKazS9F3WzmdZHbA0prck3jems=");
+_s(MainView, "rxqxSomN8dzq3oChKVl5wx3N23c=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27242,7 +27254,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX","../login-view/login-view.jsx":"9YtA0","../signup-view/signup-view.jsx":"4OGiN"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27269,6 +27281,7 @@ const MovieCard = ({ movie , onMovieClick  })=>{
     }, undefined);
 };
 _c = MovieCard;
+//Similar-Movie Component:
 // defined props constrains for Movie Card
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -28307,6 +28320,172 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"lJZlQ":[function() {},{}]},["gf9ir","iP3KC","d8Dch"], "d8Dch", "parcelRequirea9e5")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const LoginView = ({ onLoggedIn  })=>{
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const handleSubmit = (event)=>{
+        //prevents default behavior of the form which is to reload the entire page
+        event.preventDefault();
+        const data = {
+            access: username,
+            secret: password
+        };
+        fetch("https://movies-couch-api.vercel.app/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((response)=>response.json()).then((data)=>{
+            console.log("Login response: ", data);
+            if (data.user) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+                onLoggedIn(data.user, data.token);
+            } else alert("No such user");
+        }).catch((e)=>{
+            alert("Something went wrong!");
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value),
+                        minLength: "5",
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 41,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 39,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 49,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 47,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 38,
+        columnNumber: 9
+    }, undefined);
+};
+_s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"6NQvI","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5XEqX"}],"4OGiN":[function(require,module,exports) {
+// import { useState } from "react";
+// export const SignupView = () => {
+//     const [username, setUsername] = useState(""); 
+//     const [password, setPassword] = useState("");
+//     const [email, setEmail] = useState("");
+//     const [birthday, setBirthday] = useState("");
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//     const data = {
+//         username: username,
+//         secret: password,
+//         email: email,
+//         birthday: birthday
+//         };
+//     };
+//     fetch("Signup_URL/signup", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)        
+//         }).then((response) => {
+//          if (response.ok) {
+//             alert("Signup successful");
+//              window.location.reload();
+//              } else {
+//                  alert("Signup failed")
+//                 } 
+//             });
+//          };
+//         return (
+//         <form onSubmit={handleSubmit}>
+//             <label>
+//                 Username:
+//                 <input type= "text" 
+//                 value={username}
+//                 onChange={(e) => setUsername(e.target.value)}
+//                 minLength="5"/>
+//             </label>
+//             <label> 
+//                 Password:
+//                 <input type="password"
+//                  value={password}
+//                  onChange={(e) => setPassword(e.target.value)}
+//                  required />
+//             </label>
+//             <label>
+//                 Email:
+//                 <input type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 required />
+//             </label>
+//             <label>
+//                 Birthday:
+//                 <input type="date"
+//                 value={birthday}
+//                 onChange={(e) => setBirthday(e.target.value)}
+//                 required />
+//             </label>
+//             <button type="submit">Submit</button>
+//         </form>
+//     );
+
+},{}],"lJZlQ":[function() {},{}]},["gf9ir","iP3KC","d8Dch"], "d8Dch", "parcelRequirea9e5")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
