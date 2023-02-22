@@ -1,4 +1,4 @@
-//importing other compoents
+//importing other components
 import { useState, useEffect } from "react";
 // importing Moviecard-component
 import { MovieCard } from "../movie-card/movie-card";
