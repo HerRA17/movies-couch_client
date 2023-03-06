@@ -27501,7 +27501,21 @@ const MovieCard = ({ movie , onMovieClick  })=>{
                                 fileName: "src/components/movie-card/movie-card.jsx",
                                 lineNumber: 15,
                                 columnNumber: 11
-                            }, undefined)
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 15,
+                                columnNumber: 17
+                            }, undefined),
+                            "Director:",
+                            " " + movie.Director.Name,
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 17,
+                                columnNumber: 11
+                            }, undefined),
+                            "Genre:",
+                            " " + movie.Genre.Name
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
@@ -27517,6 +27531,9 @@ const MovieCard = ({ movie , onMovieClick  })=>{
                         className: "movie-card-button",
                         onClick: ()=>onMovieClick(movie),
                         variant: "button",
+                        style: {
+                            cursor: "pointer"
+                        },
                         active: true,
                         children: "Open"
                     }, void 0, false, {
@@ -41277,6 +41294,7 @@ const MovieView = ({ movie , onBackClick  })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         onClick: onBackClick,
                         className: "back-button",
+                        variant: "button",
                         style: {
                             cursor: "pointer"
                         },
