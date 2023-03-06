@@ -21,7 +21,7 @@ return(
         {/* <br /> <br />Description:
         {movie.Genre.Description}  */}
         </Card.Text>
-        <Button onClick={onBackClick} className="back-button" style={{ cursor: "pointer"}} active>
+        <Button onClick={onBackClick} className="back-button" variant="button" style={{ cursor: "pointer"}} active>
             Back
         </Button>
     </Card.Body>
