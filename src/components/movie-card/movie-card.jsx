@@ -12,13 +12,13 @@ export const MovieCard = ({ movie, onMovieClick}) => {
           <Card.Text>
           <br />
           {movie.Description}
+          <br /><br />
+          Director:{' '+ movie.Director.Name}
           <br />
-          {/* {movie.Director}
-          <br />
-          {movie.Genre} */}
+          Genre:{' '+ movie.Genre.Name} 
           </Card.Text>
           <br />
-          <Button className="movie-card-button" onClick={() => onMovieClick(movie)} variant="button" active>
+          <Button className="movie-card-button" onClick={() => onMovieClick(movie)} variant="button" style={{ cursor: "pointer"}} active>
               Open
           </Button>
           </Card.Body>
@@ -32,16 +32,16 @@ MovieCard.propTypes = {
     Title: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    // Director: PropTypes.objectOf({
-    //   Name: PropTypes.string,
-    //   Bio: PropTypes.string,
-    //   Birthdate: PropTypes.string,
-    //   Deathdate: PropTypes.string
-    //   }),
-    // Genre: PropTypes.objectOf({
-    //   Name: PropTypes.string,
-    //   Description: PropTypes.string
-    // })  //need further examples-> help
+    Director: PropTypes.objectOf({
+      Name: PropTypes.string,
+      Bio: PropTypes.string,
+      Birthdate: PropTypes.string,
+      Deathdate: PropTypes.string
+      }),
+    Genre: PropTypes.objectOf({
+      Name: PropTypes.string,
+      Description: PropTypes.string
+    })  //need further examples-> help
   }),
   onMovieClick: PropTypes.func.isRequired
 };
