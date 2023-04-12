@@ -3,3 +3,5 @@ node_modules
 .parcel-cache
 .jest
 .eslintrc.json
+.odt
+.pdf
