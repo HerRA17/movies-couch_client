@@ -3,33 +3,43 @@ import { Button } from "react-bootstrap";
 import { toast } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-function DeleteUser ({onLoggedOut, token, user}) {
-    const deleteUser = function () {
-        axios.delete(`https://movies-couch-api.vercel.app/users/${user.Username}`, 
-        {headers: {Authorization: `Bearer ${token}`}})
-        .then(function (response) {
-            if (response.status === 401) {
-                throw new Error("Sorry, you're not authorized to access this resource.");
-            } else if( response.status === 404) {
-                throw new Error("User was not found.")
-            } else if(response.ok) {
-                toast.success(`You succesfully deleted the account with the username ${user.Username}.`);
-                onLoggedOut();
-            }
-        })
-        .catch(function (error) {
-            if (error.message) {
-                toast.error(error.message);
-            } else {
-                toast.error("An error ocurred while trying to delete. Please try again later.");
-            }
-            console.error("An error occured: " + error)
-        });
+function DeleteUser ({ user }) {
+    const token = window.localStorage.getItem("token");
+
+    const deregisterUser = function () {
+        const userWarning = confirm(
+            `Are you sure? Deleting your account is permanent.` 
+        );
+
+        if (!userWarning) {
+            toast.info("That wasa close!")
+        } else {
+            fetch(`https://movies-couch-api.vercel.app/users/${user.Username}`, 
+                {
+                    method: "DELETE",
+                    headers: { 
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+                .then((response) => {
+                    if(response.ok) {
+                        toast.success("Account successfully deleted");
+                        localStorage.clear();
+                        window.location.reload();
+                    } else {
+                        toast.danger("Something went wrong");
+                    }
+                })
+                 .catch((e) => console.log(e));
+        }
     };
+    
     return (
         <>
-        <Button className="" onClick={deleteUser} type="button">Delete Account</Button>
+            <Button className="" onClick={deregisterUser} type="button">Delete Account</Button>
         </>
     )
 }
-export {DeleteUser};
+export { DeleteUser };
