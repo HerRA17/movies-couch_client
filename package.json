@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "start": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/HerRA17/movies-couch_client#readme",
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "parcel": "^2.8.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
