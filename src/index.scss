@@ -17,6 +17,7 @@ $backgroundcolor: black;
     background-color: $backgroundcolor;
     width: 100%;
     height: auto;
+    margin-top: 20px;
 }
 
 .movie-card{
@@ -24,18 +25,29 @@ $backgroundcolor: black;
     background-color: $backgroundcolor;
     width: 100%;
     height: auto;
+    margin-top: 20px;
 }
+
+.movie-card-body{
+    color: $color;
+    background-color: $backgroundcolor;
+    width: 100%;
+    height: auto;
+}
+
 .movie-card-button{
-color:$backgroundcolor;
-background-color:none ;
-font-weight: bold;
-justify-content: center;
-align-items: center;
+    color:$backgroundcolor;
+    background-color:none ;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
 }
+
 .login-view{
     color: $color;
     background-color: $backgroundcolor;
 }
+
 .signup-view{
     color: $color;
     background-color: $backgroundcolor;
