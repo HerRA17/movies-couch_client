@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+// import PropTypes from "prop-types";
 
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -46,7 +47,7 @@ export const LoginView = ({ onLoggedIn }) => {
         // handle submit is the callback of onSubmit, tells the login API to validate user & password
         <Container>
             <Row>
-                <p class="movies-couch">Logo</p>
+                <p className="logo">Logo</p>
             </Row>
             <Row>
                 <Col>
@@ -83,3 +84,5 @@ export const LoginView = ({ onLoggedIn }) => {
         </Container>
     );
 };
+
+export default LoginView;
