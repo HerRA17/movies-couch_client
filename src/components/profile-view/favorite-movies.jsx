@@ -19,20 +19,19 @@ function FavoriteMovies({movies, removeFavMovie, user }) {
             return (
                 <Col className="mt-4" id={movie._id}>
                     <MovieCard 
-                    movie={movie}
-                    removeFavMovie={removeFavMovie}/>
+                        movie={movie}
+                        removeFavMovie={removeFavMovie}/>
                 </Col>
             )
         })
     }
+    console.log(favoriteMovies);
     return (
         <div>
         {printFavoriteMovies}
         </div>
     )
-    
-        
-    
+
 } 
 
-export {FavoriteMovies};
+export { FavoriteMovies };
