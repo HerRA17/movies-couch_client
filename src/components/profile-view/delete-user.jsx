@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { toast } from "react-bootstrap";
+import PropTypes from "prop-types";
 import "react-toastify/dist/ReactToastify.css";
 
 function DeleteUser ({ user }) {
@@ -43,3 +44,8 @@ function DeleteUser ({ user }) {
     )
 }
 export { DeleteUser };
+
+DeleteUser.propTypes = {
+    user: PropTypes.object,
+    deregisterUser: PropTypes.func
+}
