@@ -1,11 +1,12 @@
 import  {React, useEffect, useState} from "react"; 
 // import Form from "react-bootstrap/Form";
-import { Col, ListGroup, ListGroupItem, Row}  from "react-bootstrap";
-import { Card, Container } from "react-bootstrap";
+import { Col, Row}  from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { toast } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import { FavoriteMovies } from "./favorite-movies";
-import { UserInfo } from "./user-info";
+import { UserInfo }  from "./user-info";
 import { UpdateView } from "./update-user";
 import { DeleteUser } from "./delete-user";
 
@@ -42,10 +43,10 @@ import { DeleteUser } from "./delete-user";
 
     // let moviesId = movies_.id -> ?
     // Fav-movies 
-    // const favoriteMovies = movies.filter((movie) => favoriteMovies.includes(movie._id))     
+    const favoriteMovies = movies.filter((movie) => FavoriteMovies.includes(movie._id))     
 
     // remove-fav_Movies
-     removeFavMovie = async (movies) =>{
+     removeFavMovie = async (movies) => {
        const user = localStorage.getItem("user");
        console.log(user);
        const token = localStorage.getItem("token");
@@ -80,7 +81,7 @@ console.log(updateUser);
                     </Row>
                     <Row>
                         <Col>
-                            {/* <FavoriteMovies /> */}
+                            <FavoriteMovies />
                         </Col>
                     </Row>
                     <Row className="d-flex justify-content-center p-4">
@@ -94,10 +95,11 @@ console.log(updateUser);
 
 
 
-// TestProfile.propTypes = {
-//     user: PropTypes.object,
-//     // setUser: PropTypes.instanceOf(user), 
-//     movies: PropTypes.object, 
-//     token: PropTypes.number,
-//     onLoggedOut: PropTypes.func
-// }
+TestProfile.propTypes = {
+    user: PropTypes.object,
+    setUser: PropTypes.string, 
+    movies: PropTypes.object, 
+    token: PropTypes.number,
+    updateUser: PropTypes.func,
+    removeFavMovie: PropTypes.func
+}
