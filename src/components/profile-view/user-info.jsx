@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 function UserInfo({ user }) {
-    console.log(UserInfo);
     return(
         <>
             <h2>Your Profile:</h2>
@@ -11,9 +11,6 @@ function UserInfo({ user }) {
                         <>
                             <h3>Username:</h3>
                             <p>{user.Username}</p>
-                            <br />
-                            {/* <h3>Password:</h3> 
-                            <p>{user.Password}</p> */}
                             <br />
                             <h3>Email:</h3>
                             <p>{user.Email}</p>
@@ -29,3 +26,7 @@ function UserInfo({ user }) {
 }
 
 export { UserInfo }; 
+
+UserInfo.propTypes = {
+    user: PropTypes.object
+    }
