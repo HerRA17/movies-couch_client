@@ -1,10 +1,9 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Col from "react-bootstrap";
+import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 
-function FavoriteMovies({movies, removeFavMovie, user }) {
+function FavoriteMovies({ movies, removeFavMovie, user }) {
     let favoriteMovies = movies.filter(function (movie) {
         return user.FavoriteMovies.include(movie._id);
     }); 
@@ -17,7 +16,7 @@ function FavoriteMovies({movies, removeFavMovie, user }) {
     } else {
         printFavoriteMovies = favoriteMovies.map(function(movie) {
             return (
-                <Col className="mt-4" id={movie._id}>
+                <Col className="mt-4" _id={movie._id}>
                     <MovieCard 
                         movie={movie}
                         removeFavMovie={removeFavMovie}/>
@@ -35,3 +34,10 @@ function FavoriteMovies({movies, removeFavMovie, user }) {
 } 
 
 export { FavoriteMovies };
+
+FavoriteMovies.propTypes = {
+    user: PropTypes.object,
+    movies: PropTypes.array,
+    removeFavMovie: PropTypes.func,
+    _id: PropTypes.string
+}
