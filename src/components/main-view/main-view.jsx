@@ -13,7 +13,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
 // import { ProfileView } from "../profile-view/profile-view";
-import { TestProfile } from "../profile-view/test-profile";
+import { TestProfile }  from "../profile-view/test-profile";
 
 
 // exporting Main view variabels
@@ -54,7 +54,7 @@ function MainView()  {
                 Genre: movie.Genre
             };    
         });
-        console.log(moviesFromApi)
+        // console.log(moviesFromApi)
         setMovies(moviesFromApi); 
         
     
@@ -130,8 +130,8 @@ return (
                         ) : movies.length === 0 ? (
                             <div>The list is empty!</div>
                             ): ( <Col md={8}>
-                            <MovieView movies={movies} /*addFavMovie={addFavMovie}*/ /*removeFavMovie={removeFavMovie}*/
-                            favoriteMovies={user.favoriteMovies} />
+                            <MovieView movies={movies} 
+                            FavoriteMovies={user.FavoriteMovies} />
                             </Col>
                         )}
                      </>
@@ -164,9 +164,7 @@ return (
                     <>
                     {user ? (
                         <Col className="mb-5" >
-                            <TestProfile   user={user} setUser={setUser} movies={movies} updateUser={updateUser} /*onLoggedOut={onLoggedOut}*/ />
-                        {/* <ProfileView  token={token}  user={user}  setUser={setUser}  
-                        movies={movies} removeFavMovie={removeFavMovie} onLoggedOut={onLoggedOut}/> */}
+                            <TestProfile   user={user} setUser={setUser} movies={movies} updateUser={updateUser}  />
                         </Col>
                     ) : (
                       <Navigate to="/login" />
