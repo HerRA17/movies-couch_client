@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form, Row, Col, CardGroup, Card, ListGroup } from "react-bootstrap";
+import { Button, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -43,7 +44,8 @@ export const UpdateView = ({ user, updateUser}) => {
                 console.log(error);
             });
     };
-console.log(UpdateView);
+    console.log(UpdateView);
+
     return (
 
         <Row className="mt-2">
@@ -60,7 +62,7 @@ console.log(UpdateView);
                                         <input 
                                         type="text"
                                         name="username"
-                                        className=""
+                                        className="input-fields"
                                         value={username}
                                         placeholder={user.Username}
                                         onChange={e => setUsername(e.target.value) }
@@ -74,7 +76,7 @@ console.log(UpdateView);
                                         <input 
                                         type="password"
                                         name="password"
-                                        className=""
+                                        className="input-fields"
                                         value={password}
                                         placeholder={user.Password}
                                         onChange={e => setPassword(e.target.value) }
@@ -88,7 +90,7 @@ console.log(UpdateView);
                                         <input 
                                         type="email"
                                         name="email"
-                                        className=""
+                                        className="input-fields"
                                         value={email}
                                         placeholder={user.Email}
                                         onChange={e => setEmail(e.target.value) }
@@ -103,13 +105,14 @@ console.log(UpdateView);
                                         <input 
                                         type="date"
                                         name="birthday"
-                                        className=""
+                                        className="input-fields"
                                         value={birthday}
                                         placeholder={user.Birthday}
                                         onChange={e => setBirthday(e.target.value) }
                                         />
                                     </label>
                                 </ListGroup.Item>
+                                <br />
                                 <ListGroup.Item>
                                     <Button variant="primary" type="submit" className="mt-3">
                                         Update User
@@ -122,5 +125,9 @@ console.log(UpdateView);
             </Col>
         </Row>
     );
-}
+};
 
+UpdateView.propTypes = {
+user: PropTypes.object,
+updateUser: PropTypes.func
+}
