@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import { Link, Redirect } from "react-router-dom";
 import "./movie-view.scss";
 
-export const MovieView = ({ movies, favoriteMovies, addFavMovie, token }) => {
+export const MovieView = ({ movies, /*favoriteMovies, addFavMovie,*/ token }) => {
     const { movieId } = useParams();
     const movie = movies.find((m) => m._id === movieId);
     
@@ -21,13 +21,13 @@ return(
             <Card.Title>{movie.Title}</Card.Title>
             <br />
             <Card.Text> Director:      
-             {` + ${movie.Director.Name}`} 
+             {` ${movie.Director.Name}`} 
             <br /> <br />
             About: {` + ${movie.Director.Bio}`}
             <br /> <br />Birthdate: 
-            {` + ${movie.Director.Birthdate}` }
+            {` ${movie.Director.Birthdate}` }
             <br /> <br />Genre: 
-            { ` + ${movie.Genre.Name}` }
+            { ` ${movie.Genre.Name}` }
             </Card.Text>
             <br />
             <Link to={"/"}>
@@ -41,14 +41,8 @@ return(
 
   
 MovieView.prototype = {
-    movies: PropTypes.shape({
-        _id: PropTypes.number,
-        Title: PropTypes.string,
-        ImageURL: PropTypes.string, 
-        Description: PropTypes.string, 
-        Director: PropTypes.string,
-        Genre: PropTypes.string
-    }),
+    movies: PropTypes.array,
     favoriteMovies: PropTypes.array,
-    addFavMovie: PropTypes.func
+    addFavMovie: PropTypes.func,
+    token: PropTypes.string
 }
