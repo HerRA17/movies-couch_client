@@ -2,61 +2,62 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { toast } from "react-bootstrap";
+
 
 // Movie card component
  function MovieCard ({ movies, movie, user, updateUser  }) {
-  const [inFavoriteMovies, setInFavoriteMovies] = useState(user.FavoriteMovies.include(movies._id));
+  // const [inFavoriteMovies, setInFavoriteMovies] = useState(user.FavoriteMovies.include(movies._id));
   const token = window.localStorage.getItem("token");
   // add Fav Movie function
-  const addFavoriteMovie = () => {
-    fetch(`https://movies-couch-api.vercel.app/users/${user.Username}/favMovies/${movie._id}`, {
-    method: "POST",
-    headers: {Authorization: `Bearer ${token}`}
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          toast.danger("Failed");
-          return false;
-        }
-      })
-      .then(user => {
-        if(user) {
-          toast.succes("Movie added to Favorite Movies");
-          setInFavoriteMovies(true);
-          updateUser(user);
-        }
-      })
-      .catch(e => {
-        toast.danger(e);
-      });
-  }    
-  const removeFavoriteMovie = () => {
-    fetch(`https://movies-couch-api.vercel.app/users/${user.Username}/favMovies/${movie._id}`, {
-      method: "POST",
-      headers: {Authorization: `Bearer ${token}`} 
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        toast.danger("Failed");
-        return false;
-      }
-    })
-    .then(user => {
-      if(user) {
-        toast.succes("Movie deleted from Favorite Movies");
-        setInFavoriteMovies(false);
-        updateUser(user);
-      }
-    })
-    .catch(e => {
-      toast.danger(e);
-    });
-  }    
+  // const addFavoriteMovie = () => {
+  //   fetch(`https://movies-couch-api.vercel.app/users/${user.Username}/favMovies/${movie._id}`, {
+  //   method: "POST",
+  //   headers: {Authorization: `Bearer ${token}`}
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         toast.danger("Failed");
+  //         return false;
+  //       }
+  //     })
+  //     .then(user => {
+  //       if(user) {
+  //         alert("Movie added to Favorite Movies");
+  //         setInFavoriteMovies(true);
+  //         updateUser(user);
+  //       }
+  //     })
+  //     .catch(e => {
+  //       alert(e);
+  //       console.log(e);
+  //     });
+  // }    
+  // const removeFavoriteMovie = () => {
+  //   fetch(`https://movies-couch-api.vercel.app/users/${user.Username}/favMovies/${movie._id}`, {
+  //     method: "POST",
+  //     headers: {Authorization: `Bearer ${token}`} 
+  //   })
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response.json();
+  //     } else {
+  //       toast.danger("Failed");
+  //       return false;
+  //     }
+  //   })
+  //   .then(user => {
+  //     if(user) {
+  //       alert("Movie deleted from Favorite Movies");
+  //       setInFavoriteMovies(false);
+  //       updateUser(user);
+  //     }
+  //   })
+  //   .catch(e => {
+  //     toast.danger(e);
+  //   });
+  // }    
   
   return (
       <Card className="movie-card" style={{ width:"18rem"}}>
@@ -75,7 +76,7 @@ import { toast } from "react-bootstrap";
                   <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                   <Button className="movie-card-button" active>Open</Button>
                   <br/> <br/>
-                  {inFavoriteMovies ? <Button onClick={(e) => {
+                  {/* {inFavoriteMovies ? <Button onClick={(e) => {
                     preventDefault();
                     removeFavoriteMovie(movie._id);
                   }} 
@@ -85,10 +86,10 @@ import { toast } from "react-bootstrap";
                     preventDefault();
                     console.log(movie._id); 
                     addFavoriteMovie(movie._id);
-                  }} 
+                  }}  
                   className="movie-card-button"
                   >Add to Favorite Movies</Button>
-                  }
+                  }*/}
                   </Link>
             </Card.Body>
       </Card>
