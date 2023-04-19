@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-import { toast } from "react-bootstrap";
 import PropTypes from "prop-types";
-import "react-toastify/dist/ReactToastify.css";
+import { Button } from "react-bootstrap";
 
 function DeleteUser ({ user }) {
     const token = window.localStorage.getItem("token");
@@ -13,7 +11,7 @@ function DeleteUser ({ user }) {
         );
 
         if (!userWarning) {
-            toast.info("That wasa close!")
+            alert("That wasa close!")
         } else {
             fetch(`https://movies-couch-api.vercel.app/users/${user.Username}`, 
                 {
@@ -26,11 +24,11 @@ function DeleteUser ({ user }) {
             )
                 .then((response) => {
                     if(response.ok) {
-                        toast.success("Account successfully deleted");
+                        alert("Account successfully deleted");
                         localStorage.clear();
                         window.location.reload();
                     } else {
-                        toast.danger("Something went wrong");
+                        alert("Something went wrong");
                     }
                 })
                  .catch((e) => console.log(e));
