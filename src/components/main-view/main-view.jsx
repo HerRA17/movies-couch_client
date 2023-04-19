@@ -4,8 +4,7 @@ import Row   from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { toast } from "react-bootstrap";
-import "react-toastify/dist/ReactToastify.css";
+
 
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -77,10 +76,7 @@ function MainView()  {
             console.log(error);
         })
     };
-/*
-Function where I add to the array-?
-favoriteMovies.add() or unshift()
-*/
+
 console.log(storedUser);
 console.log(user);
 
@@ -131,7 +127,7 @@ return (
                             <div>The list is empty!</div>
                             ): ( <Col md={8}>
                             <MovieView movies={movies} 
-                            FavoriteMovies={user.FavoriteMovies} />
+                            /* FavoriteMovies={user.FavoriteMovies}*/ />
                             </Col>
                         )}
                      </>
@@ -148,7 +144,7 @@ return (
                         ) : (
                          <>
                             {movies.map((movie) => (
-                            <Col className="mb-5" key={movie._id} md={4}>
+                            <Col className="mb-5" key={movie._id} >
                                 <MovieCard  movie={movie} user={user} updateUser={updateUser} />
                             </Col>
                             ))}
