@@ -1,9 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { Button, Row, Col, Card, ListGroup } from "react-bootstrap";
-import { toast } from "react-toastify";
-import PropTypes from "prop-types";
-import "react-toastify/dist/ReactToastify.css";
 
 
 export const UpdateView = ({ user, updateUser}) => {
@@ -35,9 +33,9 @@ export const UpdateView = ({ user, updateUser}) => {
          })
             .then((response) => {
                 if (response.ok) {
-                toast.success("Changes saved.");
+                alert("Changes saved.");
                 } else {
-                toast.danger("Ops, something went wrong");
+                alert("Ops, something went wrong");
                 }
             })
             .catch((error) => {
@@ -113,11 +111,9 @@ export const UpdateView = ({ user, updateUser}) => {
                                     </label>
                                 </ListGroup.Item>
                                 <br />
-                                <ListGroup.Item>
-                                    <Button variant="primary" type="submit" className="mt-3">
-                                        Update User
-                                    </Button>
-                                </ListGroup.Item>
+                                <Button variant="primary" type="submit" className="mt-3">
+                                    Update User
+                                </Button>
                             </form>
                         </ListGroup>
                     </Card.Body>
