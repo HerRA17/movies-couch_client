@@ -6,7 +6,7 @@ import "./index.scss";
 // Main component rendered
 const MoviesCouchApplication = () => {
     return (
-    <Container >
+    <Container className="index">
         <MainView className="movies-couch"/>
     </Container>
     );
