@@ -1,13 +1,20 @@
-$color: orange;
+$color: #FFC436;
 $backgroundcolor: black;
 $theme-colors: (
-    "outline-warning":orange,
+    "outline-warning":#FFC436,
     );
+
+#root {
+    width: 80vw;
+}
+.index, .navbar {
+    width: 100vw;
+}
 
 .movies-couch{
     color: $color;
     background-color: $backgroundcolor;
-    width: 100%;
+    width: 100vw;
     height: auto;
 }
 
@@ -15,17 +22,15 @@ $theme-colors: (
     color: $color;
     background-color: $backgroundcolor;
     justify-content: center;
+    width: 100vw;
+    height: auto;
 }
 
-.navbar{
-    justify-self: center !important;
-    
-}
 
 .movie-view{
     color: $color;
     background-color: $backgroundcolor;
-    width: 100%;
+    width: 100vw;
     height: auto;
     margin-top: 20px;
 }
@@ -49,14 +54,18 @@ $theme-colors: (
     background-color: $backgroundcolor;
 
 }
-.Navigation-bar{
-    color: $color;
-    background-color: $backgroundcolor;
-}
 
-.fav-list {
-    display: flexbox;
-    flex-direction: row;
+.favorite-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: 425px) {
+        grid-template-columns: 1fr;
+        
+    }
 }
 
 .signup-view{
