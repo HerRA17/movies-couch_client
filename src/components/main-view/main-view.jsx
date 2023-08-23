@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ThemeProvider from "react-bootstrap/ThemeProvider";
 import Row   from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -79,9 +78,7 @@ function MainView()  {
 
 return ( 
 <BrowserRouter>
-    <ThemeProvider  breakpoints={["xxl","xl","lg","md","sm","xs"]}
-        minBreakpoint="xs">
-        <NavigationBar className="Navigation-bar"
+    <NavigationBar 
             user={user} 
             onLoggedOut={onLoggedOut}
          />
@@ -93,7 +90,7 @@ return (
                      <>
                         {user ? (
                         <Navigate to="/" />
-                        ) : ( <Col md={5}>
+                        ) : ( <Col >
                             <SignupView />
                         </Col>
                         )}
@@ -106,7 +103,7 @@ return (
                      <>
                         {user ? (
                             <Navigate to="/" />
-                        ) : ( <Col md={5}>
+                        ) : ( <Col >
                             <LoginView onLoggedIn={(user, token) => {setUser(user); setToken(token); }}  /> 
                             </Col>
                         )}
@@ -121,7 +118,7 @@ return (
                         <Navigate to="/login" replace/>
                         ) : movies.length === 0 ? (
                             <div>The list is empty!</div>
-                            ): ( <Col md={8}>
+                            ): ( <Col >
                             <MovieView movies={movies} 
                             FavoriteMovies={user.FavoriteMovies} />
                             </Col>
@@ -140,7 +137,7 @@ return (
                         ) : (
                          <>
                             {movies.map((movie) => (
-                            <Col className="mb-5" key={movie._id} >
+                            <Col key={movie._id} >
                                 <MovieCard  movie={movie} user={user} updateUser={updateUser} />
                             </Col>
                             ))}
@@ -155,7 +152,7 @@ return (
                     console.log(user) ||
                     <>
                     {user ? (
-                        <Col className="mb-5" >
+                        <Col >
                             <ProfileView  user={user} setUser={setUser} movies={movies} updateUser={updateUser} key={user._id} />
                         </Col>
                     ) : (
@@ -167,7 +164,6 @@ return (
             />
             </Routes>
         </Row>
-    </ThemeProvider>
 </BrowserRouter>
     );
 }
