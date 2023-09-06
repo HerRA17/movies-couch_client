@@ -3,13 +3,13 @@ import Row   from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+import Spinner from "react-bootstrap/Spinner";
 
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-
+import { SearchBar } from "./search-bar";
 import { ProfileView } from "../profile-view/profile-view";
 
 
@@ -21,6 +21,9 @@ function MainView()  {
     const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [user, setUser] = useState(storedUser? storedUser : null);
+    const [loading, setLoading] = useState(false);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [userSearch, setUserSearch] = useState("");
     
 
     // run whenever a user logs out
@@ -34,6 +37,7 @@ function MainView()  {
         if(!token) {
             return;
         }                
+        setLoading(true);
     fetch("https://movies-couch-api.vercel.app/movies", {
       headers: {Authorization: `Bearer ${token}` },
       })
@@ -56,6 +60,32 @@ function MainView()  {
     
     });
 }, [token]);
+// logic to render searched movies
+const onSearch = function (searchInput) {
+    setUserSearch(searchInput);
+}
+useEffect(
+    function () {
+        if (!userSearch) {
+            setFilteredMovies([]);
+        } else {
+            let searchResult = movies.filter(function (movie) {
+                const titleSearched = movie.Title?.toLowerCase() || "";
+                // const directorSearched = movie.Director.toLowerCase() || movie.Director?.Name.toLowerCase();
+                const genreSearched = movie.Genre?.Name.toLowerCase() || "";
+                const userSearchLowerCase = userSearch.toLowerCase();
+            
+            return (
+                titleSearched.includes(userSearchLowerCase) ||
+                // directorSearched.includes(userSearchLowerCase) ||
+                genreSearched.includes(userSearchLowerCase) 
+            );
+            });
+            setFilteredMovies(searchResult);
+            console.log(searchResult);
+        }
+    },
+[movies, userSearch]);
 
 // update User function
     const updateUser = (user) => {
@@ -74,7 +104,16 @@ function MainView()  {
             console.log(error);
         })
     };
-
+// show spinner
+const showSpinner = function () {
+    return (
+        <Col className="spinner-wrapper">
+            <Spinner animation="border" roles="status" variant="warning">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </Col>
+    );
+};
 
 return ( 
 <BrowserRouter>
@@ -90,7 +129,7 @@ return (
                      <>
                         {user ? (
                         <Navigate to="/" />
-                        ) : ( <Col >
+                        ) : ( <Col md={5}>
                             <SignupView />
                         </Col>
                         )}
@@ -103,7 +142,7 @@ return (
                      <>
                         {user ? (
                             <Navigate to="/" />
-                        ) : ( <Col >
+                        ) : ( <Col md={5}>
                             <LoginView onLoggedIn={(user, token) => {setUser(user); setToken(token); }}  /> 
                             </Col>
                         )}
@@ -117,8 +156,8 @@ return (
                         {!user ? (
                         <Navigate to="/login" replace/>
                         ) : movies.length === 0 ? (
-                            <div>The list is empty!</div>
-                            ): ( <Col >
+                            <>{showSpinner()}</>
+                            ): ( <Col md={9}>
                             <MovieView movies={movies} 
                             FavoriteMovies={user.FavoriteMovies} />
                             </Col>
@@ -130,16 +169,31 @@ return (
                     path="/"
                     element={
                      <>
+                        <SearchBar onSearch={onSearch}/>
                         {!user ? (
                             <Navigate to="/login" replace/>
-                        ) : movies.length === 0 ? (
-                            <div>The list is empty!</div>
-                        ) : (
-                         <>
-                            {movies.map((movie) => (
-                            <Col key={movie._id} >
+                        ) : loading ? (
+                            <>{showSpinner()}</>
+                            )
+                         : userSearch && filteredMovies.length === 0 ? (
+                            <Col className="mt-5">
+                                Sorry, we could not find any match to your request
+                            </Col>
+                        ) : userSearch ? (
+                         <>                            
+                            {filteredMovies.map((movie) => (
+                            <Col className="mb-5" key={movie._id} >
                                 <MovieCard  movie={movie} user={user} updateUser={updateUser} />
                             </Col>
+                            ))}
+                        </>
+                        ) 
+                        : ( 
+                        <>
+                            {movies.map((movie) => (
+                                <Col className="mb-5" key={movie._id}>
+                                    <MovieCard movie={movie} user={user} updateUser={updateUser}/>
+                                </Col>
                             ))}
                         </>
                         )}
