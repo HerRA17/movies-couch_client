@@ -42,7 +42,7 @@ export const SignupView = () => {
     return (
         // handleSubmit is the callback of onSubmit, tells the login API to validate user & password
         <Container fluid className="p-0 min-vh-100 d-flex flex-column">
-            <Row className="flex-grow-1 justify-content-center align-items-center">
+            <Row className="flex-grow-2 justify-content-center align-items-center">
                 <Col >
                     <Card className="card mb-4 w-80 h-100">
                         <Card.Body className="movies-couch" >
