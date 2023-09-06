@@ -1,20 +1,23 @@
-$color: #FFC436;
+$color: #ffc107;
 $backgroundcolor: black;
 $theme-colors: (
-    "outline-warning":#FFC436,
+    "outline-warning":#ffc107,
     );
 
-#root {
-    width: 80vw;
-}
-.index, .navbar {
-    width: 100vw;
-}
+// #root {
+//     width: 80vw;
+// }
+// .index {
+
+// }
+// .navbar {
+//     width: 100vw;
+// }
 
 .movies-couch{
     color: $color;
     background-color: $backgroundcolor;
-    width: 100vw;
+    width: 100%;
     height: auto;
 }
 
@@ -22,15 +25,22 @@ $theme-colors: (
     color: $color;
     background-color: $backgroundcolor;
     justify-content: center;
-    width: 100vw;
-    height: auto;
+}
+.search-bar{
+    width:80%;
+    font-size: 16px;
+    border: 1px solid white;
 }
 
+.navbar{
+    justify-self: center !important;
+    
+}
 
 .movie-view{
     color: $color;
     background-color: $backgroundcolor;
-    width: 100vw;
+    width: 100%;
     height: auto;
     margin-top: 20px;
 }
@@ -54,6 +64,10 @@ $theme-colors: (
     background-color: $backgroundcolor;
 
 }
+.Navigation-bar{
+    color: $color;
+    background-color: $backgroundcolor;
+}
 
 .favorite-list {
     display: grid;
@@ -64,7 +78,9 @@ $theme-colors: (
 
     @media (max-width: 425px) {
         grid-template-columns: 1fr;
-        
+    }
+    @media (min-width: 1440px) {
+        gap: 75px;
     }
 }
 
@@ -76,7 +92,6 @@ $theme-colors: (
 .link_to{
     color: $color;
 }
-
 
 // Importing React Bootstrap utility classes
 @import "node_modules/bootstrap/scss/bootstrap.scss";
